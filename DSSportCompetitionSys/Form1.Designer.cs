@@ -31,12 +31,14 @@ namespace DSSportCompetitionSys
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridViewX1 = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
             this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
+            this.buttonBallot = new DevComponents.DotNetBar.ButtonX();
+            this.buttonX2 = new DevComponents.DotNetBar.ButtonX();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pictureBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).BeginInit();
@@ -49,7 +51,7 @@ namespace DSSportCompetitionSys
             this.pictureBox1.Location = new System.Drawing.Point(-1, -3);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(938, 123);
+            this.pictureBox1.Size = new System.Drawing.Size(998, 123);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -71,22 +73,23 @@ namespace DSSportCompetitionSys
             // 
             this.dataGridViewX1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridViewX1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewX1.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewX1.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewX1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dataGridViewX1.Location = new System.Drawing.Point(13, 180);
             this.dataGridViewX1.Name = "dataGridViewX1";
             this.dataGridViewX1.RowHeadersWidth = 51;
             this.dataGridViewX1.RowTemplate.Height = 27;
             this.dataGridViewX1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridViewX1.Size = new System.Drawing.Size(600, 326);
+            this.dataGridViewX1.Size = new System.Drawing.Size(723, 424);
             this.dataGridViewX1.TabIndex = 1;
+            this.dataGridViewX1.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewX1_CellMouseDown);
             // 
             // labelX1
             // 
@@ -108,7 +111,7 @@ namespace DSSportCompetitionSys
             this.buttonX1.BackColor = System.Drawing.Color.Transparent;
             this.buttonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonX1.Font = new System.Drawing.Font("楷体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.buttonX1.Location = new System.Drawing.Point(653, 180);
+            this.buttonX1.Location = new System.Drawing.Point(742, 180);
             this.buttonX1.Name = "buttonX1";
             this.buttonX1.Size = new System.Drawing.Size(241, 61);
             this.buttonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -116,12 +119,42 @@ namespace DSSportCompetitionSys
             this.buttonX1.Text = "设置参赛名单";
             this.buttonX1.Click += new System.EventHandler(this.buttonX1_Click);
             // 
+            // buttonBallot
+            // 
+            this.buttonBallot.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.buttonBallot.BackColor = System.Drawing.Color.Transparent;
+            this.buttonBallot.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonBallot.Font = new System.Drawing.Font("楷体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.buttonBallot.Location = new System.Drawing.Point(742, 272);
+            this.buttonBallot.Name = "buttonBallot";
+            this.buttonBallot.Size = new System.Drawing.Size(241, 61);
+            this.buttonBallot.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.buttonBallot.TabIndex = 4;
+            this.buttonBallot.Text = "生成比赛对阵表  （抽签）";
+            this.buttonBallot.Click += new System.EventHandler(this.buttonBallot_Click);
+            // 
+            // buttonX2
+            // 
+            this.buttonX2.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.buttonX2.BackColor = System.Drawing.Color.Transparent;
+            this.buttonX2.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonX2.Font = new System.Drawing.Font("楷体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.buttonX2.Location = new System.Drawing.Point(742, 357);
+            this.buttonX2.Name = "buttonX2";
+            this.buttonX2.Size = new System.Drawing.Size(241, 61);
+            this.buttonX2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.buttonX2.TabIndex = 5;
+            this.buttonX2.Text = "生成比赛报表";
+            this.buttonX2.Click += new System.EventHandler(this.buttonX2_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(935, 534);
+            this.ClientSize = new System.Drawing.Size(995, 677);
+            this.Controls.Add(this.buttonX2);
+            this.Controls.Add(this.buttonBallot);
             this.Controls.Add(this.buttonX1);
             this.Controls.Add(this.labelX1);
             this.Controls.Add(this.dataGridViewX1);
@@ -133,6 +166,7 @@ namespace DSSportCompetitionSys
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "木球竞赛系统";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.pictureBox1.ResumeLayout(false);
             this.pictureBox1.PerformLayout();
@@ -148,6 +182,8 @@ namespace DSSportCompetitionSys
         private DevComponents.DotNetBar.Controls.DataGridViewX dataGridViewX1;
         private DevComponents.DotNetBar.LabelX labelX1;
         private DevComponents.DotNetBar.ButtonX buttonX1;
+        private DevComponents.DotNetBar.ButtonX buttonBallot;
+        private DevComponents.DotNetBar.ButtonX buttonX2;
     }
 }
 

@@ -38,6 +38,13 @@ namespace DSSportCompetitionSys
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
             this.comboSex = new System.Windows.Forms.ComboBox();
             this.comboGroup = new System.Windows.Forms.ComboBox();
+            this.labelX2 = new DevComponents.DotNetBar.LabelX();
+            this.labelX3 = new DevComponents.DotNetBar.LabelX();
+            this.labelX4 = new DevComponents.DotNetBar.LabelX();
+            this.labelX5 = new DevComponents.DotNetBar.LabelX();
+            this.labelX6 = new DevComponents.DotNetBar.LabelX();
+            this.labelX7 = new DevComponents.DotNetBar.LabelX();
+            this.labelX8 = new DevComponents.DotNetBar.LabelX();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -97,7 +104,7 @@ namespace DSSportCompetitionSys
             // 
             // 
             this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX1.Location = new System.Drawing.Point(641, 51);
+            this.labelX1.Location = new System.Drawing.Point(658, 51);
             this.labelX1.Name = "labelX1";
             this.labelX1.Size = new System.Drawing.Size(122, 23);
             this.labelX1.TabIndex = 5;
@@ -119,12 +126,104 @@ namespace DSSportCompetitionSys
             this.comboGroup.Size = new System.Drawing.Size(121, 23);
             this.comboGroup.TabIndex = 7;
             // 
+            // labelX2
+            // 
+            // 
+            // 
+            // 
+            this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX2.Location = new System.Drawing.Point(658, 298);
+            this.labelX2.Name = "labelX2";
+            this.labelX2.Size = new System.Drawing.Size(89, 23);
+            this.labelX2.TabIndex = 8;
+            this.labelX2.Text = "可导入样式";
+            // 
+            // labelX3
+            // 
+            // 
+            // 
+            // 
+            this.labelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX3.Location = new System.Drawing.Point(690, 327);
+            this.labelX3.Name = "labelX3";
+            this.labelX3.Size = new System.Drawing.Size(209, 23);
+            this.labelX3.TabIndex = 9;
+            this.labelX3.Text = "1.姓名、性别、单位、组别";
+            // 
+            // labelX4
+            // 
+            // 
+            // 
+            // 
+            this.labelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX4.Location = new System.Drawing.Point(690, 356);
+            this.labelX4.Name = "labelX4";
+            this.labelX4.Size = new System.Drawing.Size(209, 58);
+            this.labelX4.TabIndex = 10;
+            this.labelX4.Text = "2.按序输入种子号，输入完毕后点击空白处确认输入完成后关闭窗口";
+            this.labelX4.WordWrap = true;
+            // 
+            // labelX5
+            // 
+            // 
+            // 
+            // 
+            this.labelX5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX5.Location = new System.Drawing.Point(658, 420);
+            this.labelX5.Name = "labelX5";
+            this.labelX5.Size = new System.Drawing.Size(105, 23);
+            this.labelX5.TabIndex = 11;
+            this.labelX5.Text = "参考种子数：";
+            // 
+            // labelX6
+            // 
+            // 
+            // 
+            // 
+            this.labelX6.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX6.Location = new System.Drawing.Point(690, 449);
+            this.labelX6.Name = "labelX6";
+            this.labelX6.Size = new System.Drawing.Size(177, 23);
+            this.labelX6.TabIndex = 12;
+            this.labelX6.Text = "8位：设置2个种子";
+            // 
+            // labelX7
+            // 
+            // 
+            // 
+            // 
+            this.labelX7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX7.Location = new System.Drawing.Point(690, 478);
+            this.labelX7.Name = "labelX7";
+            this.labelX7.Size = new System.Drawing.Size(177, 23);
+            this.labelX7.TabIndex = 13;
+            this.labelX7.Text = "32位：设置8个种子";
+            // 
+            // labelX8
+            // 
+            // 
+            // 
+            // 
+            this.labelX8.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX8.Location = new System.Drawing.Point(690, 507);
+            this.labelX8.Name = "labelX8";
+            this.labelX8.Size = new System.Drawing.Size(177, 23);
+            this.labelX8.TabIndex = 14;
+            this.labelX8.Text = "64位：设置16个种子";
+            // 
             // ImportPersonInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(935, 534);
+            this.Controls.Add(this.labelX8);
+            this.Controls.Add(this.labelX7);
+            this.Controls.Add(this.labelX6);
+            this.Controls.Add(this.labelX5);
+            this.Controls.Add(this.labelX4);
+            this.Controls.Add(this.labelX3);
+            this.Controls.Add(this.labelX2);
             this.Controls.Add(this.comboGroup);
             this.Controls.Add(this.comboSex);
             this.Controls.Add(this.labelX1);
@@ -135,6 +234,7 @@ namespace DSSportCompetitionSys
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "ImportPersonInfoForm";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "木球竞赛系统";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
@@ -150,6 +250,13 @@ namespace DSSportCompetitionSys
         private DevComponents.DotNetBar.LabelX labelX1;
         private System.Windows.Forms.ComboBox comboSex;
         private System.Windows.Forms.ComboBox comboGroup;
+        private DevComponents.DotNetBar.LabelX labelX2;
+        private DevComponents.DotNetBar.LabelX labelX3;
+        private DevComponents.DotNetBar.LabelX labelX4;
+        private DevComponents.DotNetBar.LabelX labelX5;
+        private DevComponents.DotNetBar.LabelX labelX6;
+        private DevComponents.DotNetBar.LabelX labelX7;
+        private DevComponents.DotNetBar.LabelX labelX8;
     }
 }
 

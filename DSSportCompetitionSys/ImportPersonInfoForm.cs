@@ -1,9 +1,7 @@
-﻿using DevComponents.DotNetBar;
+﻿using DSSportCompetitionSys.Entity;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -12,7 +10,9 @@ using System.Windows.Forms;
 namespace DSSportCompetitionSys
 {
     public enum Group { 老年组, 中年组, 小学生组 }
+
     public enum Sex { 男, 女 }
+
     public partial class ImportPersonInfoForm : Form
     {
         private static DataGridViewRow ParentProjectInfo;
@@ -28,15 +28,15 @@ namespace DSSportCompetitionSys
                 ParentProjectInfo = parentProjectInfo;
 
                 string key = $"{ParentProjectInfo.Cells[0].Value.ToString()}_{ParentProjectInfo.Cells[1].Value.ToString()}_{ParentProjectInfo.Cells[2].Value.ToString()}_{ParentProjectInfo.Cells[3].Value.ToString()}";
-                MatchPersonPath = Path.Combine(Directory.GetCurrentDirectory(), $"{key.Replace(" ", "").Replace(":", "")}_MatchPersonInfo.txt");
+                MatchPersonPath = Path.Combine(Directory.GetCurrentDirectory(), $@"Temp\{key.Replace(" ", "").Replace(":", "").Replace(";", "").Replace("*", "")}_AgainstInformation.txt");
 
                 ImportPersonInfoFormInstance = new ImportPersonInfoForm();
 
                 SetFormTitle(parentProjectInfo);
-
             }
             return ImportPersonInfoFormInstance;
         }
+
         private ImportPersonInfoForm()
         {
             InitializeComponent();
@@ -66,9 +66,12 @@ namespace DSSportCompetitionSys
 
             dataGridViewX1.DataSource = dt;
             // 设置显示样式
-            dataGridViewX1.Columns[0].Width = 52;
+            dataGridViewX1.Columns[0].Width = 55;
             dataGridViewX1.Columns[2].Width = 55;
-            dataGridViewX1.Columns[5].Width = 55;
+            dataGridViewX1.Columns[5].Width = 80;
+
+            dataGridViewX1.Columns[3].Width = 80;
+            dataGridViewX1.Columns[4].Width = 80;
             dataGridViewX1.AllowUserToAddRows = false;
         }
 
@@ -128,7 +131,6 @@ namespace DSSportCompetitionSys
             catch (Exception ex)
             {
                 // do nothing
-            
             }
         }
 
@@ -139,19 +141,16 @@ namespace DSSportCompetitionSys
             var path = file.FileName;
             if (string.IsNullOrWhiteSpace(path))
                 return;
-            NPOIHelper helper = null;
-
+            List<PersonInfo> personInfo = new List<PersonInfo>();
             try
             {
-                helper = new NPOIHelper(path);
+                personInfo = NPOIHelper.GetPersonInfo(path);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("文件无法打开，请检查文件是否已被打开或被破坏。");
                 return;
-            }
-
-            var personInfo = helper.GetPersonInfo();
+            }            
             var data = personInfo.Where(x => x.Sex == this.comboSex.SelectedItem.ToString() && x.Group == this.comboGroup.SelectedItem.ToString()).ToList();
 
             InitialPersonInfoDataGridView();
@@ -166,7 +165,6 @@ namespace DSSportCompetitionSys
                 row["组别"] = data[i].Group;
                 dt.Rows.Add(row);
             }
-
             dataGridViewX1.Refresh();
         }
 
@@ -180,8 +178,14 @@ namespace DSSportCompetitionSys
             WriteStream();
             this.Dispose();
         }
+
         private void WriteStream()
         {
+            // 如果目录不存在，创建目录
+            if (!Directory.Exists(Path.GetDirectoryName(MatchPersonPath)))
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(MatchPersonPath));
+            }
             using (StreamWriter stream = new StreamWriter(path: MatchPersonPath, append: false))
             {
                 stream.Write($"{this.comboSex.SelectedItem.ToString()};{this.comboGroup.SelectedItem.ToString()} \n");
@@ -200,12 +204,15 @@ namespace DSSportCompetitionSys
 
                 info.AppendLine();
             }
-
+            // 如果目录不存在，创建目录
+            if (!Directory.Exists(Path.GetDirectoryName(MatchPersonPath)))
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(MatchPersonPath));
+            }
             using (StreamWriter stream = new StreamWriter(path: MatchPersonPath, append: true))
             {
                 stream.Write(info.ToString());
             }
-
         }
     }
 }
