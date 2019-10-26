@@ -183,11 +183,11 @@ namespace DSSportCompetitionSys
                 var infos = GetCachedPersonMatchInfo(PersonMatchInfoPath);
                 if (infos.Count == 8)
                 {
-
+                    NPOIHelper.Export8PersonMatchInfo(infos, key.Replace(" ", "").Replace(":", "").Replace(";", "").Replace("*", ""));
                 }
                 else if (infos.Count == 32)
                 {
-
+                    NPOIHelper.Export32PersonMatchInfo(infos, key.Replace(" ", "").Replace(":", "").Replace(";", "").Replace("*", ""));
                 }
                 else if (infos.Count == 64)
                 {

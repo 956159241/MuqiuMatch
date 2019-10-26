@@ -24,11 +24,11 @@
         public int SeedNum { get; set; }
 
         // 一下记录的是每人在每一轮的分数
-        public double? FirstRoundscore { get; set; }
-        public double? SecondRoundscore { get; set; }
-        public double? ThirdRoundscore { get; set; }
-        public double? FourthRoundscore { get; set; }
-        public double? FifthRoundscore { get; set; }
-        public double? SixRoundscore { get; set; }
+        public double FirstRoundscore { get; set; }
+        public double SecondRoundscore { get; set; }
+        public double ThirdRoundscore { get; set; }
+        public double FourthRoundscore { get; set; }
+        public double FifthRoundscore { get; set; }
+        public double SixRoundscore { get; set; }
     }
 }
