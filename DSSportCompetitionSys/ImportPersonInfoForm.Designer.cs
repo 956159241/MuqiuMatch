@@ -45,6 +45,12 @@ namespace DSSportCompetitionSys
             this.labelX6 = new DevComponents.DotNetBar.LabelX();
             this.labelX7 = new DevComponents.DotNetBar.LabelX();
             this.labelX8 = new DevComponents.DotNetBar.LabelX();
+            this.labelX9 = new DevComponents.DotNetBar.LabelX();
+            this.labelX10 = new DevComponents.DotNetBar.LabelX();
+            this.labelX11 = new DevComponents.DotNetBar.LabelX();
+            this.labelX12 = new DevComponents.DotNetBar.LabelX();
+            this.buttonImportPersonInfo.SuspendLayout();
+            this.buttonResetPersonInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,10 +59,11 @@ namespace DSSportCompetitionSys
             this.buttonImportPersonInfo.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.buttonImportPersonInfo.BackColor = System.Drawing.Color.Transparent;
             this.buttonImportPersonInfo.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonImportPersonInfo.Controls.Add(this.labelX9);
             this.buttonImportPersonInfo.Font = new System.Drawing.Font("楷体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.buttonImportPersonInfo.Location = new System.Drawing.Point(658, 127);
+            this.buttonImportPersonInfo.Location = new System.Drawing.Point(657, 93);
             this.buttonImportPersonInfo.Name = "buttonImportPersonInfo";
-            this.buttonImportPersonInfo.Size = new System.Drawing.Size(241, 61);
+            this.buttonImportPersonInfo.Size = new System.Drawing.Size(265, 61);
             this.buttonImportPersonInfo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.buttonImportPersonInfo.TabIndex = 3;
             this.buttonImportPersonInfo.Text = "导入参赛名单";
@@ -67,10 +74,11 @@ namespace DSSportCompetitionSys
             this.buttonResetPersonInfo.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.buttonResetPersonInfo.BackColor = System.Drawing.Color.Transparent;
             this.buttonResetPersonInfo.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonResetPersonInfo.Controls.Add(this.labelX10);
             this.buttonResetPersonInfo.Font = new System.Drawing.Font("楷体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.buttonResetPersonInfo.Location = new System.Drawing.Point(658, 197);
+            this.buttonResetPersonInfo.Location = new System.Drawing.Point(657, 163);
             this.buttonResetPersonInfo.Name = "buttonResetPersonInfo";
-            this.buttonResetPersonInfo.Size = new System.Drawing.Size(241, 61);
+            this.buttonResetPersonInfo.Size = new System.Drawing.Size(265, 61);
             this.buttonResetPersonInfo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.buttonResetPersonInfo.TabIndex = 4;
             this.buttonResetPersonInfo.Text = "重置参赛名单";
@@ -104,24 +112,25 @@ namespace DSSportCompetitionSys
             // 
             // 
             this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX1.Location = new System.Drawing.Point(658, 51);
+            this.labelX1.Font = new System.Drawing.Font("隶书", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelX1.Location = new System.Drawing.Point(657, 12);
             this.labelX1.Name = "labelX1";
-            this.labelX1.Size = new System.Drawing.Size(122, 23);
+            this.labelX1.Size = new System.Drawing.Size(266, 23);
             this.labelX1.TabIndex = 5;
-            this.labelX1.Text = "设置导入条件";
+            this.labelX1.Text = "设置导入条件（conditions）";
             // 
             // comboSex
             // 
             this.comboSex.FormattingEnabled = true;
-            this.comboSex.Location = new System.Drawing.Point(658, 80);
+            this.comboSex.Location = new System.Drawing.Point(657, 64);
             this.comboSex.Name = "comboSex";
-            this.comboSex.Size = new System.Drawing.Size(121, 23);
+            this.comboSex.Size = new System.Drawing.Size(138, 23);
             this.comboSex.TabIndex = 6;
             // 
             // comboGroup
             // 
             this.comboGroup.FormattingEnabled = true;
-            this.comboGroup.Location = new System.Drawing.Point(785, 80);
+            this.comboGroup.Location = new System.Drawing.Point(801, 64);
             this.comboGroup.Name = "comboGroup";
             this.comboGroup.Size = new System.Drawing.Size(121, 23);
             this.comboGroup.TabIndex = 7;
@@ -132,11 +141,12 @@ namespace DSSportCompetitionSys
             // 
             // 
             this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX2.Location = new System.Drawing.Point(658, 298);
+            this.labelX2.Font = new System.Drawing.Font("隶书", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelX2.Location = new System.Drawing.Point(657, 246);
             this.labelX2.Name = "labelX2";
-            this.labelX2.Size = new System.Drawing.Size(89, 23);
+            this.labelX2.Size = new System.Drawing.Size(266, 23);
             this.labelX2.TabIndex = 8;
-            this.labelX2.Text = "可导入样式";
+            this.labelX2.Text = "可导入样式（Excel Format）";
             // 
             // labelX3
             // 
@@ -144,7 +154,7 @@ namespace DSSportCompetitionSys
             // 
             // 
             this.labelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX3.Location = new System.Drawing.Point(690, 327);
+            this.labelX3.Location = new System.Drawing.Point(689, 275);
             this.labelX3.Name = "labelX3";
             this.labelX3.Size = new System.Drawing.Size(209, 23);
             this.labelX3.TabIndex = 9;
@@ -156,11 +166,11 @@ namespace DSSportCompetitionSys
             // 
             // 
             this.labelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX4.Location = new System.Drawing.Point(690, 356);
+            this.labelX4.Location = new System.Drawing.Point(689, 426);
             this.labelX4.Name = "labelX4";
             this.labelX4.Size = new System.Drawing.Size(209, 58);
             this.labelX4.TabIndex = 10;
-            this.labelX4.Text = "2.按序输入种子号，输入完毕后点击空白处确认输入完成后关闭窗口";
+            this.labelX4.Text = "按序输入种子号，输入完毕后点击空白处确认输入完成后关闭窗口";
             this.labelX4.WordWrap = true;
             // 
             // labelX5
@@ -169,11 +179,12 @@ namespace DSSportCompetitionSys
             // 
             // 
             this.labelX5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX5.Location = new System.Drawing.Point(658, 420);
+            this.labelX5.Font = new System.Drawing.Font("隶书", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelX5.Location = new System.Drawing.Point(657, 310);
             this.labelX5.Name = "labelX5";
-            this.labelX5.Size = new System.Drawing.Size(105, 23);
+            this.labelX5.Size = new System.Drawing.Size(266, 23);
             this.labelX5.TabIndex = 11;
-            this.labelX5.Text = "参考种子数：";
+            this.labelX5.Text = "参考种子数（Reference）";
             // 
             // labelX6
             // 
@@ -181,7 +192,7 @@ namespace DSSportCompetitionSys
             // 
             // 
             this.labelX6.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX6.Location = new System.Drawing.Point(690, 449);
+            this.labelX6.Location = new System.Drawing.Point(689, 339);
             this.labelX6.Name = "labelX6";
             this.labelX6.Size = new System.Drawing.Size(177, 23);
             this.labelX6.TabIndex = 12;
@@ -193,7 +204,7 @@ namespace DSSportCompetitionSys
             // 
             // 
             this.labelX7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX7.Location = new System.Drawing.Point(690, 478);
+            this.labelX7.Location = new System.Drawing.Point(689, 368);
             this.labelX7.Name = "labelX7";
             this.labelX7.Size = new System.Drawing.Size(177, 23);
             this.labelX7.TabIndex = 13;
@@ -205,11 +216,67 @@ namespace DSSportCompetitionSys
             // 
             // 
             this.labelX8.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX8.Location = new System.Drawing.Point(690, 507);
+            this.labelX8.Location = new System.Drawing.Point(689, 397);
             this.labelX8.Name = "labelX8";
             this.labelX8.Size = new System.Drawing.Size(177, 23);
             this.labelX8.TabIndex = 14;
             this.labelX8.Text = "64位：设置16个种子";
+            // 
+            // labelX9
+            // 
+            // 
+            // 
+            // 
+            this.labelX9.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX9.Enabled = false;
+            this.labelX9.Font = new System.Drawing.Font("楷体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelX9.Location = new System.Drawing.Point(-6, 38);
+            this.labelX9.Name = "labelX9";
+            this.labelX9.Size = new System.Drawing.Size(277, 23);
+            this.labelX9.TabIndex = 0;
+            this.labelX9.Text = "Import The List Of Participants";
+            this.labelX9.TextAlignment = System.Drawing.StringAlignment.Center;
+            // 
+            // labelX10
+            // 
+            // 
+            // 
+            // 
+            this.labelX10.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX10.Enabled = false;
+            this.labelX10.Font = new System.Drawing.Font("楷体", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelX10.Location = new System.Drawing.Point(0, 37);
+            this.labelX10.Name = "labelX10";
+            this.labelX10.Size = new System.Drawing.Size(262, 23);
+            this.labelX10.TabIndex = 0;
+            this.labelX10.Text = "ResetThe List Of Participants";
+            this.labelX10.TextAlignment = System.Drawing.StringAlignment.Center;
+            // 
+            // labelX11
+            // 
+            // 
+            // 
+            // 
+            this.labelX11.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX11.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelX11.Location = new System.Drawing.Point(657, 39);
+            this.labelX11.Name = "labelX11";
+            this.labelX11.Size = new System.Drawing.Size(138, 24);
+            this.labelX11.TabIndex = 15;
+            this.labelX11.Text = "性别(Sex)";
+            // 
+            // labelX12
+            // 
+            // 
+            // 
+            // 
+            this.labelX12.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX12.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelX12.Location = new System.Drawing.Point(801, 39);
+            this.labelX12.Name = "labelX12";
+            this.labelX12.Size = new System.Drawing.Size(122, 24);
+            this.labelX12.TabIndex = 16;
+            this.labelX12.Text = "分组(Group)";
             // 
             // ImportPersonInfoForm
             // 
@@ -217,6 +284,8 @@ namespace DSSportCompetitionSys
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(935, 534);
+            this.Controls.Add(this.labelX12);
+            this.Controls.Add(this.labelX11);
             this.Controls.Add(this.labelX8);
             this.Controls.Add(this.labelX7);
             this.Controls.Add(this.labelX6);
@@ -238,6 +307,8 @@ namespace DSSportCompetitionSys
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "木球竞赛系统";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.buttonImportPersonInfo.ResumeLayout(false);
+            this.buttonResetPersonInfo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).EndInit();
             this.ResumeLayout(false);
 
@@ -257,6 +328,10 @@ namespace DSSportCompetitionSys
         private DevComponents.DotNetBar.LabelX labelX6;
         private DevComponents.DotNetBar.LabelX labelX7;
         private DevComponents.DotNetBar.LabelX labelX8;
+        private DevComponents.DotNetBar.LabelX labelX9;
+        private DevComponents.DotNetBar.LabelX labelX10;
+        private DevComponents.DotNetBar.LabelX labelX11;
+        private DevComponents.DotNetBar.LabelX labelX12;
     }
 }
 

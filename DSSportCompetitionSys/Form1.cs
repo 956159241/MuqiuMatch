@@ -17,10 +17,10 @@ namespace DSSportCompetitionSys
             InitializeComponent();
 
             DataTable dt = new DataTable();
-            dt.Columns.Add("名称", typeof(string));
-            dt.Columns.Add("承办", typeof(string));
-            dt.Columns.Add("时间", typeof(string));
-            dt.Columns.Add("地点", typeof(string));
+            dt.Columns.Add("名称(Name)", typeof(string));
+            dt.Columns.Add("承办(Organizer)", typeof(string));
+            dt.Columns.Add("时间(Date)", typeof(string));
+            dt.Columns.Add("地点(Place)", typeof(string));
 
             GetProjectManageInfo(dt);
 
@@ -47,10 +47,10 @@ namespace DSSportCompetitionSys
                             string.IsNullOrWhiteSpace(fields[3]))))
                         {
                             var row = dt.NewRow();
-                            row["名称"] = fields[0];
-                            row["承办"] = fields[1];
-                            row["时间"] = fields[2];
-                            row["地点"] = fields[3];
+                            row["名称(Name)"] = fields[0];
+                            row["承办(Organizer)"] = fields[1];
+                            row["时间(Date)"] = fields[2];
+                            row["地点(Place)"] = fields[3];
 
                             dt.Rows.Add(row);
                         }
@@ -102,6 +102,11 @@ namespace DSSportCompetitionSys
             try
             {
                 data = this.dataGridViewX1.SelectedRows[0];
+                if (data.Cells[0].Value == null || string.IsNullOrWhiteSpace(data.Cells[0].Value.ToString()))
+                {
+                    MessageBox.Show("请设置项目名称后重新操作", "友情提示");
+                    return;
+                }
             }
             catch (Exception ex)
             {
@@ -119,6 +124,11 @@ namespace DSSportCompetitionSys
             try
             {
                 data = this.dataGridViewX1.SelectedRows[0];
+                if (data.Cells[0].Value == null || string.IsNullOrWhiteSpace(data.Cells[0].Value.ToString()))
+                {
+                    MessageBox.Show("请设置项目名称后重新操作", "友情提示");
+                    return;
+                }
             }
             catch (Exception ex)
             {
@@ -171,6 +181,11 @@ namespace DSSportCompetitionSys
                 try
                 {
                     data = this.dataGridViewX1.SelectedRows[0];
+                    if (data.Cells[0].Value == null || string.IsNullOrWhiteSpace(data.Cells[0].Value.ToString()))
+                    {
+                        MessageBox.Show("请设置项目名称后重新操作", "友情提示");
+                        return;
+                    }
                 }
                 catch (Exception ex)
                 {
