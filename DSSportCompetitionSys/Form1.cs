@@ -11,6 +11,7 @@ namespace DSSportCompetitionSys
     public partial class Form1 : Form
     {
         private static string ProjectManageInfoPath = Path.Combine(Directory.GetCurrentDirectory(), @"Temp\ProjectManageInfo.txt");
+        private AutoSizeFormClass asc = new AutoSizeFormClass();
 
         public Form1()
         {
@@ -142,8 +143,12 @@ namespace DSSportCompetitionSys
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            asc.controllInitializeSize(this);
             // 设置默认选中第一行
-            dataGridViewX1.Rows[0].Selected = true;
+            if (dataGridViewX1.Rows.Count > 0)
+            {
+                dataGridViewX1.Rows[0].Selected = true;
+            }
         }
 
         private void dataGridViewX1_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
@@ -152,7 +157,7 @@ namespace DSSportCompetitionSys
             {
                 // 获取当前行
                 var selectRows = dataGridViewX1.SelectedRows;
-                if (MessageBox.Show("是否删除选中行？", "友情提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show("是否删除选中行？", "友情提示", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
                     if (selectRows.Count > 0)
                     {
@@ -172,94 +177,87 @@ namespace DSSportCompetitionSys
             }
         }
 
-        private void buttonX2_Click(object sender, EventArgs e)
+       
+        //private void Form1_MinimumSizeChanged(object sender, EventArgs e)
+        //{
+        //}
+
+        private void Form1_SizeChanged(object sender, EventArgs e)
         {
-            try
-
-            {
-                var data = new DataGridViewRow();
-                try
-                {
-                    data = this.dataGridViewX1.SelectedRows[0];
-                    if (data.Cells[0].Value == null || string.IsNullOrWhiteSpace(data.Cells[0].Value.ToString()))
-                    {
-                        MessageBox.Show("请设置项目名称后重新操作", "友情提示");
-                        return;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("请点击左侧空白单元格，选中整行后重新设置。", "友情提示");
-                    return;
-                }
-                string key = $"{data.Cells[0].Value.ToString()}_{data.Cells[1].Value.ToString()}_{data.Cells[2].Value.ToString()}_{data.Cells[3].Value.ToString()}";
-                var PersonMatchInfoPath = Path.Combine(Directory.GetCurrentDirectory(), $@"Temp\{key.Replace(" ", "").Replace(":", "").Replace(";", "").Replace("*", "")}_PersonMatchInfoPath.txt");
-
-                var infos = GetCachedPersonMatchInfo(PersonMatchInfoPath);
-                if (infos.Count == 8)
-                {
-                    NPOIHelper.Export8PersonMatchInfo(infos, key.Replace(" ", "").Replace(":", "").Replace(";", "").Replace("*", ""));
-                }
-                else if (infos.Count == 32)
-                {
-                    NPOIHelper.Export32PersonMatchInfo(infos, key.Replace(" ", "").Replace(":", "").Replace(";", "").Replace("*", ""));
-                }
-                else if (infos.Count == 64)
-                {
-                    NPOIHelper.Export64PersonMatchInfo(infos, key.Replace(" ", "").Replace(":", "").Replace(";", "").Replace("*", ""));
-
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("程序出现异常：" + ex, "提示信息");            
-            }
-
+            asc.controlAutoSize(this);
         }
 
-        private List<PersonInfo> GetCachedPersonMatchInfo(string path)
+        private void labelX1_MouseHover(object sender, EventArgs e)
         {
-            List<PersonInfo> infos = new List<PersonInfo>();
-            try
-            {                
-                using (StreamReader stream = new StreamReader(path))
-                {
-                    var line = stream.ReadLine();
-                    while (line != null)
-                    {
-                        PersonInfo info = new PersonInfo();
-                        var fields = line.Split(';');
-                        info.MatchDisplayNum = Convert.ToInt32(fields[0]);
-                        info.Name = fields[1];
-                        info.Organization = fields[2];
-                        info.Num = Convert.ToInt32(fields[3]);
-                        info.SeedNum = Convert.ToInt32(fields[4]);
-                        info.FirstRoundscore = string.IsNullOrWhiteSpace(fields[5]) ? 0 : Convert.ToDouble(fields[5]);
-                        info.SecondRoundscore = string.IsNullOrWhiteSpace(fields[6]) ? 0 : Convert.ToDouble(fields[6]);
-                        info.ThirdRoundscore = string.IsNullOrWhiteSpace(fields[7]) ? 0 : Convert.ToDouble(fields[7]);
-                        if (fields.Length >= 9)
-                        {
-                            info.FourthRoundscore = string.IsNullOrWhiteSpace(fields[8]) ? 0 : Convert.ToDouble(fields[8]);
-                        }
-                        if (fields.Length >= 10)
-                        {
-                            info.FifthRoundscore = string.IsNullOrWhiteSpace(fields[9]) ? 0 : Convert.ToDouble(fields[9]);
-                        }
-                        if (fields.Length == 11)
-                        {
-                            info.SixRoundscore = string.IsNullOrWhiteSpace(fields[10]) ? 0 : Convert.ToDouble(fields[10]);
-                        }
+            this.labelX1.ForeColor = System.Drawing.Color.Red;
+        }
 
-                        line = stream.ReadLine();
-                        infos.Add(info);
-                    }
-                }
-            }
-            catch (Exception ex)
+        private void labelX1_MouseLeave(object sender, EventArgs e)
+        {
+            this.labelX1.ForeColor = System.Drawing.Color.Black;
+        }
+
+        private void labelX5_MouseHover(object sender, EventArgs e)
+        {
+            this.labelX5.ForeColor = System.Drawing.Color.Red;
+        }
+
+        private void labelX5_MouseLeave(object sender, EventArgs e)
+        {
+            this.labelX5.ForeColor = System.Drawing.Color.Black;
+        }
+
+        private void labelX1_Click(object sender, EventArgs e)
+        {
+            ProjectInfoEntity info = new ProjectInfoEntity();
+
+            ProjectInfo importForm = new ProjectInfo(info);
+            var result = importForm.ShowDialog();
+
+            if (string.IsNullOrEmpty(info.Name))
             {
-                // do nothing
+                return; 
             }
-            return infos;
+            var dt = dataGridViewX1.DataSource as DataTable;
+            var row = dt.NewRow();
+            row["名称(Name)"] = info.Name;
+            row["承办(Organizer)"] = info.Organizer;
+            row["时间(Date)"] = info.Date;
+            row["地点(Place)"] = info.Place;
+            dt.Rows.Add(row);
+        }
+
+        private void labelX5_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewX1.SelectedRows.Count == 0)
+            {
+                return;
+            }
+            var data = this.dataGridViewX1.SelectedRows[0];
+            var projectInfo = new ProjectInfoEntity();
+            projectInfo.Name = data.Cells["名称(Name)"].Value.ToString();
+            projectInfo.Organizer = data.Cells["承办(Organizer)"].Value.ToString();
+            projectInfo.Date = data.Cells["时间(Date)"].Value.ToString();
+            projectInfo.Place = data.Cells["地点(Place)"].Value.ToString();
+
+            ProjectInfo importForm = new ProjectInfo(projectInfo);
+            var result = importForm.ShowDialog();
+
+            if (string.IsNullOrEmpty(projectInfo.Name))
+            {
+                return;
+            }
+
+            data.Cells["名称(Name)"].Value = projectInfo.Name;
+            data.Cells["承办(Organizer)"].Value = projectInfo.Organizer;
+            data.Cells["时间(Date)"].Value = projectInfo.Date;
+            data.Cells["地点(Place)"].Value = projectInfo.Place;
+        }
+
+        private void btnManageGroup_Click(object sender, EventArgs e)
+        {
+            GroupsManage manageForm = new GroupsManage();
+            manageForm.ShowDialog();
         }
     }
 }

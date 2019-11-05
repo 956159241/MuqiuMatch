@@ -9,12 +9,12 @@ using System.Windows.Forms;
 
 namespace DSSportCompetitionSys
 {
-    public enum Group { 老年组, 中年组, 小学生组 }
-
     public enum Sex { 男, 女 }
 
     public partial class ImportPersonInfoForm : Form
     {
+        AutoSizeFormClass asc = new AutoSizeFormClass();
+
         private static DataGridViewRow ParentProjectInfo;
 
         private static ImportPersonInfoForm ImportPersonInfoFormInstance;
@@ -65,14 +65,6 @@ namespace DSSportCompetitionSys
             dt.Columns.Add("种子", typeof(string));
 
             dataGridViewX1.DataSource = dt;
-            // 设置显示样式
-            dataGridViewX1.Columns[0].Width = 55;
-            dataGridViewX1.Columns[2].Width = 55;
-            dataGridViewX1.Columns[5].Width = 80;
-
-            dataGridViewX1.Columns[3].Width = 80;
-            dataGridViewX1.Columns[4].Width = 80;
-            dataGridViewX1.AllowUserToAddRows = false;
         }
 
         private void SetComboSex()
@@ -85,9 +77,26 @@ namespace DSSportCompetitionSys
 
         private void SetComboGrop()
         {
-            this.comboGroup.Items.Add("老年组");
-            this.comboGroup.Items.Add("中年组");
-            this.comboGroup.Items.Add("小学生组");
+            var path = Path.Combine(Directory.GetCurrentDirectory(), $@"Temp\groups.txt");
+            Dictionary<string, string> groups = new Dictionary<string, string>();
+            using (StreamReader stream = new StreamReader(path))
+            {
+                var line = stream.ReadLine();
+                while (line != null)
+                {
+                    var fields = line.Split(';');
+                    if (!groups.ContainsKey(fields[0]) && fields.Length > 2)
+                    {
+                        groups.Add(fields[0], fields[1]);
+                    }
+                    line = stream.ReadLine();
+                }
+            }
+
+            foreach (var group in groups.Values)
+            {
+                this.comboGroup.Items.Add(group);
+            }
 
             this.comboGroup.SelectedIndex = 0;
         }
@@ -104,11 +113,29 @@ namespace DSSportCompetitionSys
             var dt = dataGridViewX1.DataSource as DataTable;
             try
             {
+                var path = Path.Combine(Directory.GetCurrentDirectory(), $@"Temp\groups.txt");
+                Dictionary<string, string> groups = new Dictionary<string, string>();
+                using (StreamReader stream = new StreamReader(path))
+                {
+                    var line = stream.ReadLine();
+                    while (line != null)
+                    {
+                        var fields = line.Split(';');
+                        if (!groups.ContainsKey(fields[0]) && fields.Length > 2)
+                        {
+                            groups.Add(fields[0], fields[1]);
+                        }
+                        line = stream.ReadLine();
+                    }
+                }
+
                 using (StreamReader stream = new StreamReader(MatchPersonPath))
                 {
                     var lineFirst = stream.ReadLine();
                     this.comboSex.SelectedIndex = (int)Enum.Parse(typeof(Sex), lineFirst.Split(';')[0]);
-                    this.comboGroup.SelectedIndex = (int)Enum.Parse(typeof(Group), lineFirst.Split(';')[1]);
+                    var key = groups.Where(x => x.Value.Trim() == lineFirst.Split(';')[1].Trim()).FirstOrDefault().Key;
+                    this.comboGroup.SelectedIndex = Convert.ToInt32(key) - 1;
+                    //this.comboGroup.SelectedIndex = 0;
 
                     var line = stream.ReadLine();
                     while (line != null)
@@ -141,7 +168,7 @@ namespace DSSportCompetitionSys
             var path = file.FileName;
             if (string.IsNullOrWhiteSpace(path))
                 return;
-            List<PersonInfo> personInfo = new List<PersonInfo>();
+            List<PersonInfoEntity> personInfo = new List<PersonInfoEntity>();
             try
             {
                 personInfo = NPOIHelper.GetPersonInfo(path);
@@ -213,6 +240,59 @@ namespace DSSportCompetitionSys
             {
                 stream.Write(info.ToString());
             }
+        }
+
+        private void ImportPersonInfoForm_Load(object sender, EventArgs e)
+        {
+            asc.controllInitializeSize(this);
+        }
+
+        private void ImportPersonInfoForm_SizeChanged(object sender, EventArgs e)
+        {
+            asc.controlAutoSize(this);
+        }
+
+        private void dataGridViewX1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void buttonX1_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewX1.SelectedRows.Count == 0)
+            {
+                return;            
+            }
+            var selectedRow = dataGridViewX1.SelectedRows[0];
+            // 获取最大种子号
+            dataGridViewX1.Refresh();
+            int maxSeedNum = 0;
+            for (int i = 0; i < dataGridViewX1.Rows.Count; i++)
+            {
+                if (dataGridViewX1.Rows[i] == selectedRow)
+                {
+                    continue;                
+                }
+                if (dataGridViewX1.Rows[i].Cells["种子"].Value != null && !string.IsNullOrWhiteSpace(dataGridViewX1.Rows[i].Cells["种子"].Value.ToString()))
+                {
+                    var seedNum = Convert.ToInt32(dataGridViewX1.Rows[i].Cells["种子"].Value.ToString());
+                    if (seedNum > maxSeedNum)
+                    {
+                        maxSeedNum = seedNum;  
+                    } 
+                }
+            }
+            
+            // 之所以没有直接按序输入，是以防输入中途推出程序，当再次输入时，应该从当前最大的种子数开始
+            selectedRow.Cells["种子"].Value = (maxSeedNum + 1).ToString();
+        }
+
+        private void dataGridViewX1_DataSourceChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void dataGridViewX1_Sorted(object sender, EventArgs e)
+        {
         }
     }
 }
