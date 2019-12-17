@@ -52,6 +52,11 @@ namespace DSSportCompetitionSys
             Initial8PersonInfoDataGridView();
 
             GetCachedPersonMatchInfo();
+
+            if (dataGridViewX1.Rows.Count == 0)
+            {
+                GenerateMatchInfo();
+            }
         }
 
         private void GenerateMatchInfo()
@@ -317,19 +322,35 @@ namespace DSSportCompetitionSys
                 if (seed.SeedNum == 17)
                     ConvertFromNext(listPerson[(listPerson.Count / 32) * 31 - 1], seed);
                 if (seed.SeedNum == 18)
-                    ConvertFromNext(listPerson[(listPerson.Count / 32) * 3], seed);
+                    ConvertFromNext(listPerson[(listPerson.Count / 32)], seed);
                 if (seed.SeedNum == 19)
                     ConvertFromNext(listPerson[(listPerson.Count / 32) * 29 - 1], seed);
                 if (seed.SeedNum == 20)
-                    ConvertFromNext(listPerson[(listPerson.Count / 32) * 5], seed);
+                    ConvertFromNext(listPerson[(listPerson.Count / 32) * 3], seed);
                 if (seed.SeedNum == 21)
                     ConvertFromNext(listPerson[(listPerson.Count / 32) * 27 - 1], seed);
                 if (seed.SeedNum == 22)
-                    ConvertFromNext(listPerson[(listPerson.Count / 32) * 7], seed);
+                    ConvertFromNext(listPerson[(listPerson.Count / 32) * 5], seed);
                 if (seed.SeedNum == 23)
                     ConvertFromNext(listPerson[(listPerson.Count / 32) * 25 - 1], seed);
                 if (seed.SeedNum == 24)
+                    ConvertFromNext(listPerson[(listPerson.Count / 32) * 7], seed);
+                if (seed.SeedNum == 25)
+                    ConvertFromNext(listPerson[(listPerson.Count / 32) * 23 - 1], seed);
+                if (seed.SeedNum == 26)
                     ConvertFromNext(listPerson[(listPerson.Count / 32) * 9], seed);
+                if (seed.SeedNum == 27)
+                    ConvertFromNext(listPerson[(listPerson.Count / 32) * 21 - 1], seed);
+                if (seed.SeedNum == 28)
+                    ConvertFromNext(listPerson[(listPerson.Count / 32) * 11], seed);
+                if (seed.SeedNum == 29)
+                    ConvertFromNext(listPerson[(listPerson.Count / 32) * 19 - 1], seed);
+                if (seed.SeedNum == 30)
+                    ConvertFromNext(listPerson[(listPerson.Count / 32) * 13], seed);
+                if (seed.SeedNum == 31)
+                    ConvertFromNext(listPerson[(listPerson.Count / 32) * 17 - 1], seed);
+                if (seed.SeedNum == 32)
+                    ConvertFromNext(listPerson[(listPerson.Count / 32) * 15], seed);
             }
 
             // 设置轮空
@@ -433,73 +454,303 @@ namespace DSSportCompetitionSys
                     ConvertFromNext(listPerson[(listPerson.Count / 32) * 25 - 1], new PersonInfoEntity() { Num = -1 });
                 if (i == 24)
                     ConvertFromNext(listPerson[(listPerson.Count / 32) * 9], new PersonInfoEntity() { Num = -1 });
+                if (i == 25)
+                    ConvertFromNext(listPerson[(listPerson.Count / 32) * 23 - 1], new PersonInfoEntity() { Num = -1 });
+                if (i == 26)
+                    ConvertFromNext(listPerson[(listPerson.Count / 32) * 11], new PersonInfoEntity() { Num = -1 });
+                if (i == 27)
+                    ConvertFromNext(listPerson[(listPerson.Count / 32) * 21 -1], new PersonInfoEntity() { Num = -1 });
+                if (i == 28)
+                    ConvertFromNext(listPerson[(listPerson.Count / 32) * 13], new PersonInfoEntity() { Num = -1 });
+                if (i == 29)
+                    ConvertFromNext(listPerson[(listPerson.Count / 32) * 19 - 1], new PersonInfoEntity() { Num = -1 });
+                if (i == 30)
+                    ConvertFromNext(listPerson[(listPerson.Count / 32) * 15], new PersonInfoEntity() { Num = -1 });
+                if (i == 31)
+                    ConvertFromNext(listPerson[(listPerson.Count / 32) * 17 - 1], new PersonInfoEntity() { Num = -1 });
             }
 
-            // 把四个区分组设置好
-            var partA = listPerson.Skip(0).Take(listPerson.Count() / 4).ToList();
-            var partB = listPerson.Skip(listPerson.Count() / 4).Take(listPerson.Count() / 4).ToList();
-            var partC = listPerson.Skip(listPerson.Count() / 2).Take(listPerson.Count() / 4).ToList();
-            var partD = listPerson.Skip((listPerson.Count() / 4) * 3).Take(listPerson.Count() / 4).ToList();
 
-            foreach (var position in listPerson.Where(x => x.Num == 0).ToArray())
+            if (listPerson.Count > 32)
             {
-                if (normalPersons.Count == 0)
-                    break;
-                var next = normalPersons[random.Next(normalPersons.Count() - 1)];
+                // 把8个区分组设置好,64分8区
+                var partA = listPerson.Skip(0).Take(listPerson.Count() / 8).ToList();
+                var partB = listPerson.Skip(listPerson.Count() / 8).Take(listPerson.Count() / 8).ToList();
+                var partC = listPerson.Skip((listPerson.Count() / 8) * 2).Take(listPerson.Count() / 8).ToList();
+                var partD = listPerson.Skip((listPerson.Count() / 8) * 3).Take(listPerson.Count() / 8).ToList();
+                var partE = listPerson.Skip((listPerson.Count() / 8) * 4).Take(listPerson.Count() / 8).ToList();
+                var partF = listPerson.Skip((listPerson.Count() / 8) * 5).Take(listPerson.Count() / 8).ToList();
+                var partG = listPerson.Skip((listPerson.Count() / 8) * 6).Take(listPerson.Count() / 8).ToList();
+                var partH = listPerson.Skip((listPerson.Count() / 8) * 7).Take(listPerson.Count() / 8).ToList();
 
-                if (partA.Where(x => x.Num == 0).Count() > 0 && (!partA.Select(x => x.Organization).Contains(next.Organization) && !partB.Select(x => x.Organization).Contains(next.Organization)))
+                foreach (var position in listPerson.Where(x => x.Num == 0).ToArray())
                 {
-                    ConvertFromNext(listPerson[partA.Where(x => x.Num == 0).First().MatchDisplayNum], next);
-                }
-                else if (partB.Where(x => x.Num == 0).Count() > 0 && (!partA.Select(x => x.Organization).Contains(next.Organization) && !partB.Select(x => x.Organization).Contains(next.Organization)))
-                {
-                    ConvertFromNext(listPerson[partB.Where(x => x.Num == 0).First().MatchDisplayNum], next);
-                }
-                else if (partC.Where(x => x.Num == 0).Count() > 0 && (!partC.Select(x => x.Organization).Contains(next.Organization) && !partD.Select(x => x.Organization).Contains(next.Organization)))
-                {
-                    ConvertFromNext(listPerson[partC.Where(x => x.Num == 0).First().MatchDisplayNum], next);
-                }
-                else if (partD.Where(x => x.Num == 0).Count() > 0 && (!partC.Select(x => x.Organization).Contains(next.Organization) && !partD.Select(x => x.Organization).Contains(next.Organization)))
-                {
-                    ConvertFromNext(listPerson[partD.Where(x => x.Num == 0).First().MatchDisplayNum], next);
-                }
+                    if (normalPersons.Count == 0)
+                        break;
+                    var next = normalPersons[random.Next(normalPersons.Count())];
 
-                // 避免一个组织超过两人的情况
-                else if (partA.Where(x => x.Num == 0).Count() > 0 && (!partA.Select(x => x.Organization).Contains(next.Organization)))
-                {
-                    ConvertFromNext(listPerson[partA.Where(x => x.Num == 0).First().MatchDisplayNum], next);
-                }
-                else if (partD.Where(x => x.Num == 0).Count() > 0 && (!partD.Select(x => x.Organization).Contains(next.Organization)))
-                {
-                    ConvertFromNext(listPerson[partD.Where(x => x.Num == 0).First().MatchDisplayNum], next);
-                }
-                else if (partB.Where(x => x.Num == 0).Count() > 0 && (!partB.Select(x => x.Organization).Contains(next.Organization)))
-                {
-                    ConvertFromNext(listPerson[partB.Where(x => x.Num == 0).First().MatchDisplayNum], next);
-                }
-                else if (partC.Where(x => x.Num == 0).Count() > 0 && (!partC.Select(x => x.Organization).Contains(next.Organization)))
-                {
-                    ConvertFromNext(listPerson[partC.Where(x => x.Num == 0).First().MatchDisplayNum], next);
-                }
-                else if(partA.Where(x => x.Num == 0).Count() > 0)
-                {
-                    ConvertFromNext(listPerson[partA.Where(x => x.Num == 0).First().MatchDisplayNum], next);
-                }
-                else if (partD.Where(x => x.Num == 0).Count() > 0)
-                {
-                    ConvertFromNext(listPerson[partD.Where(x => x.Num == 0).First().MatchDisplayNum], next);
-                }
-                else if (partB.Where(x => x.Num == 0).Count() > 0)
-                {
-                    ConvertFromNext(listPerson[partB.Where(x => x.Num == 0).First().MatchDisplayNum], next);
-                }
-                else if (partC.Where(x => x.Num == 0).Count() > 0)
-                {
-                    ConvertFromNext(listPerson[partC.Where(x => x.Num == 0).First().MatchDisplayNum], next);
-                }
+                    // 两区
+                    if (partA.Where(x => x.Num == 0).Count() > 0 &&
+                        (!partA.Select(x => x.Organization).Contains(next.Organization) && !partB.Select(x => x.Organization).Contains(next.Organization)) &&
+                        (!partC.Select(x => x.Organization).Contains(next.Organization) && !partD.Select(x => x.Organization).Contains(next.Organization))
+                        )
+                    {
+                        ConvertFromNext(listPerson[partA.Where(x => x.Num == 0).First().MatchDisplayNum], next);
+                    }
+                    else if (partB.Where(x => x.Num == 0).Count() > 0 &&
+                        (!partA.Select(x => x.Organization).Contains(next.Organization) && !partB.Select(x => x.Organization).Contains(next.Organization)) &&
+                        (!partC.Select(x => x.Organization).Contains(next.Organization) && !partD.Select(x => x.Organization).Contains(next.Organization))
+                        )
+                    {
+                        ConvertFromNext(listPerson[partB.Where(x => x.Num == 0).First().MatchDisplayNum], next);
+                    }
+                    else if (partC.Where(x => x.Num == 0).Count() > 0 &&
+                        (!partA.Select(x => x.Organization).Contains(next.Organization) && !partB.Select(x => x.Organization).Contains(next.Organization)) &&
+                        (!partC.Select(x => x.Organization).Contains(next.Organization) && !partD.Select(x => x.Organization).Contains(next.Organization))
+                        )
+                    {
+                        ConvertFromNext(listPerson[partC.Where(x => x.Num == 0).First().MatchDisplayNum], next);
+                    }
+                    else if (partD.Where(x => x.Num == 0).Count() > 0 &&
+                        (!partA.Select(x => x.Organization).Contains(next.Organization) && !partB.Select(x => x.Organization).Contains(next.Organization)) &&
+                        (!partC.Select(x => x.Organization).Contains(next.Organization) && !partD.Select(x => x.Organization).Contains(next.Organization))
+                        )
+                    {
+                        ConvertFromNext(listPerson[partD.Where(x => x.Num == 0).First().MatchDisplayNum], next);
+                    }
+                    else if (partE.Where(x => x.Num == 0).Count() > 0 &&
+                        (!partE.Select(x => x.Organization).Contains(next.Organization) && !partF.Select(x => x.Organization).Contains(next.Organization)) &&
+                        (!partG.Select(x => x.Organization).Contains(next.Organization) && !partH.Select(x => x.Organization).Contains(next.Organization))
+                        )
+                    {
+                        ConvertFromNext(listPerson[partE.Where(x => x.Num == 0).First().MatchDisplayNum], next);
+                    }
+                    else if (partF.Where(x => x.Num == 0).Count() > 0 &&
+                        (!partE.Select(x => x.Organization).Contains(next.Organization) && !partF.Select(x => x.Organization).Contains(next.Organization)) &&
+                        (!partG.Select(x => x.Organization).Contains(next.Organization) && !partH.Select(x => x.Organization).Contains(next.Organization))
+                        )
+                    {
+                        ConvertFromNext(listPerson[partF.Where(x => x.Num == 0).First().MatchDisplayNum], next);
+                    }
+                    else if (partG.Where(x => x.Num == 0).Count() > 0 &&
+                        (!partE.Select(x => x.Organization).Contains(next.Organization) && !partF.Select(x => x.Organization).Contains(next.Organization)) &&
+                        (!partG.Select(x => x.Organization).Contains(next.Organization) && !partH.Select(x => x.Organization).Contains(next.Organization))
+                        )
+                    {
+                        ConvertFromNext(listPerson[partG.Where(x => x.Num == 0).First().MatchDisplayNum], next);
+                    }
+                    else if (partH.Where(x => x.Num == 0).Count() > 0 &&
+                        (!partE.Select(x => x.Organization).Contains(next.Organization) && !partF.Select(x => x.Organization).Contains(next.Organization)) &&
+                        (!partG.Select(x => x.Organization).Contains(next.Organization) && !partH.Select(x => x.Organization).Contains(next.Organization))
+                        )
+                    {
+                        ConvertFromNext(listPerson[partH.Where(x => x.Num == 0).First().MatchDisplayNum], next);
+                    }
 
-                normalPersons.Remove(next);
+                    // 四区
+                    else if (partA.Where(x => x.Num == 0).Count() > 0 &&
+                        (!partA.Select(x => x.Organization).Contains(next.Organization) && !partB.Select(x => x.Organization).Contains(next.Organization)))
+                    {
+                        ConvertFromNext(listPerson[partA.Where(x => x.Num == 0).First().MatchDisplayNum], next);
+                    }
+                    else if (partB.Where(x => x.Num == 0).Count() > 0 &&
+                        (!partA.Select(x => x.Organization).Contains(next.Organization) && !partB.Select(x => x.Organization).Contains(next.Organization))
+                        )
+                    {
+                        ConvertFromNext(listPerson[partB.Where(x => x.Num == 0).First().MatchDisplayNum], next);
+                    }
+                    else if (partC.Where(x => x.Num == 0).Count() > 0 &&
+                        (!partC.Select(x => x.Organization).Contains(next.Organization) && !partD.Select(x => x.Organization).Contains(next.Organization))
+                        )
+                    {
+                        ConvertFromNext(listPerson[partC.Where(x => x.Num == 0).First().MatchDisplayNum], next);
+                    }
+                    else if (partD.Where(x => x.Num == 0).Count() > 0 &&
+                        (!partC.Select(x => x.Organization).Contains(next.Organization) && !partD.Select(x => x.Organization).Contains(next.Organization))
+                        )
+                    {
+                        ConvertFromNext(listPerson[partD.Where(x => x.Num == 0).First().MatchDisplayNum], next);
+                    }
+                    else if (partE.Where(x => x.Num == 0).Count() > 0 &&
+                        (!partE.Select(x => x.Organization).Contains(next.Organization) && !partF.Select(x => x.Organization).Contains(next.Organization))
+                        )
+                    {
+                        ConvertFromNext(listPerson[partE.Where(x => x.Num == 0).First().MatchDisplayNum], next);
+                    }
+                    else if (partF.Where(x => x.Num == 0).Count() > 0 &&
+                        (!partE.Select(x => x.Organization).Contains(next.Organization) && !partF.Select(x => x.Organization).Contains(next.Organization))
+                        )
+                    {
+                        ConvertFromNext(listPerson[partF.Where(x => x.Num == 0).First().MatchDisplayNum], next);
+                    }
+                    else if (partG.Where(x => x.Num == 0).Count() > 0 &&
+                        (!partG.Select(x => x.Organization).Contains(next.Organization) && !partH.Select(x => x.Organization).Contains(next.Organization))
+                        )
+                    {
+                        ConvertFromNext(listPerson[partG.Where(x => x.Num == 0).First().MatchDisplayNum], next);
+                    }
+                    else if (partH.Where(x => x.Num == 0).Count() > 0 &&
+                        (!partG.Select(x => x.Organization).Contains(next.Organization) && !partH.Select(x => x.Organization).Contains(next.Organization))
+                        )
+                    {
+                        ConvertFromNext(listPerson[partH.Where(x => x.Num == 0).First().MatchDisplayNum], next);
+                    }
+
+
+                    // 八区
+                    else if (partA.Where(x => x.Num == 0).Count() > 0 &&
+                        (!partA.Select(x => x.Organization).Contains(next.Organization)))
+                    {
+                        ConvertFromNext(listPerson[partA.Where(x => x.Num == 0).First().MatchDisplayNum], next);
+                    }
+                    else if (partB.Where(x => x.Num == 0).Count() > 0 &&
+                        (!partB.Select(x => x.Organization).Contains(next.Organization))
+                        )
+                    {
+                        ConvertFromNext(listPerson[partB.Where(x => x.Num == 0).First().MatchDisplayNum], next);
+                    }
+                    else if (partC.Where(x => x.Num == 0).Count() > 0 &&
+                        (!partC.Select(x => x.Organization).Contains(next.Organization))
+                        )
+                    {
+                        ConvertFromNext(listPerson[partC.Where(x => x.Num == 0).First().MatchDisplayNum], next);
+                    }
+                    else if (partD.Where(x => x.Num == 0).Count() > 0 &&
+                        (!partD.Select(x => x.Organization).Contains(next.Organization))
+                        )
+                    {
+                        ConvertFromNext(listPerson[partD.Where(x => x.Num == 0).First().MatchDisplayNum], next);
+                    }
+                    else if (partE.Where(x => x.Num == 0).Count() > 0 &&
+                        (!partE.Select(x => x.Organization).Contains(next.Organization))
+                        )
+                    {
+                        ConvertFromNext(listPerson[partE.Where(x => x.Num == 0).First().MatchDisplayNum], next);
+                    }
+                    else if (partF.Where(x => x.Num == 0).Count() > 0 &&
+                        (!partF.Select(x => x.Organization).Contains(next.Organization))
+                        )
+                    {
+                        ConvertFromNext(listPerson[partF.Where(x => x.Num == 0).First().MatchDisplayNum], next);
+                    }
+                    else if (partG.Where(x => x.Num == 0).Count() > 0 &&
+                        (!partG.Select(x => x.Organization).Contains(next.Organization))
+                        )
+                    {
+                        ConvertFromNext(listPerson[partG.Where(x => x.Num == 0).First().MatchDisplayNum], next);
+                    }
+                    else if (partH.Where(x => x.Num == 0).Count() > 0 &&
+                        (!partH.Select(x => x.Organization).Contains(next.Organization))
+                        )
+                    {
+                        ConvertFromNext(listPerson[partH.Where(x => x.Num == 0).First().MatchDisplayNum], next);
+                    }
+
+                    // 八区最后填充
+                    else if (partA.Where(x => x.Num == 0).Count() > 0)
+                    {
+                        ConvertFromNext(listPerson[partA.Where(x => x.Num == 0).First().MatchDisplayNum], next);
+                    }
+                    else if (partB.Where(x => x.Num == 0).Count() > 0)
+                    {
+                        ConvertFromNext(listPerson[partB.Where(x => x.Num == 0).First().MatchDisplayNum], next);
+                    }
+                    else if (partC.Where(x => x.Num == 0).Count() > 0 )
+                    {
+                        ConvertFromNext(listPerson[partC.Where(x => x.Num == 0).First().MatchDisplayNum], next);
+                    }
+                    else if (partD.Where(x => x.Num == 0).Count() > 0)
+                    {
+                        ConvertFromNext(listPerson[partD.Where(x => x.Num == 0).First().MatchDisplayNum], next);
+                    }
+                    else if (partE.Where(x => x.Num == 0).Count() > 0)
+                    {
+                        ConvertFromNext(listPerson[partE.Where(x => x.Num == 0).First().MatchDisplayNum], next);
+                    }
+                    else if (partF.Where(x => x.Num == 0).Count() > 0)
+                    {
+                        ConvertFromNext(listPerson[partF.Where(x => x.Num == 0).First().MatchDisplayNum], next);
+                    }
+                    else if (partG.Where(x => x.Num == 0).Count() > 0)
+                    {
+                        ConvertFromNext(listPerson[partG.Where(x => x.Num == 0).First().MatchDisplayNum], next);
+                    }
+                    else if (partH.Where(x => x.Num == 0).Count() > 0)
+                    {
+                        ConvertFromNext(listPerson[partH.Where(x => x.Num == 0).First().MatchDisplayNum], next);
+                    }
+                    normalPersons.Remove(next);
+                }
             }
+            else
+            {
+
+                // 把四个区分组设置好
+                var partA = listPerson.Skip(0).Take(listPerson.Count() / 4).ToList();
+                var partB = listPerson.Skip(listPerson.Count() / 4).Take(listPerson.Count() / 4).ToList();
+                var partC = listPerson.Skip(listPerson.Count() / 2).Take(listPerson.Count() / 4).ToList();
+                var partD = listPerson.Skip((listPerson.Count() / 4) * 3).Take(listPerson.Count() / 4).ToList();
+
+                foreach (var position in listPerson.Where(x => x.Num == 0).ToArray())
+                {
+                    if (normalPersons.Count == 0)
+                        break;
+                    var next = normalPersons[random.Next(normalPersons.Count())];
+
+                    if (partA.Where(x => x.Num == 0).Count() > 0 && (!partA.Select(x => x.Organization).Contains(next.Organization) && !partB.Select(x => x.Organization).Contains(next.Organization)))
+                    {
+                        ConvertFromNext(listPerson[partA.Where(x => x.Num == 0).First().MatchDisplayNum], next);
+                    }
+                    else if (partB.Where(x => x.Num == 0).Count() > 0 && (!partA.Select(x => x.Organization).Contains(next.Organization) && !partB.Select(x => x.Organization).Contains(next.Organization)))
+                    {
+                        ConvertFromNext(listPerson[partB.Where(x => x.Num == 0).First().MatchDisplayNum], next);
+                    }
+                    else if (partC.Where(x => x.Num == 0).Count() > 0 && (!partC.Select(x => x.Organization).Contains(next.Organization) && !partD.Select(x => x.Organization).Contains(next.Organization)))
+                    {
+                        ConvertFromNext(listPerson[partC.Where(x => x.Num == 0).First().MatchDisplayNum], next);
+                    }
+                    else if (partD.Where(x => x.Num == 0).Count() > 0 && (!partC.Select(x => x.Organization).Contains(next.Organization) && !partD.Select(x => x.Organization).Contains(next.Organization)))
+                    {
+                        ConvertFromNext(listPerson[partD.Where(x => x.Num == 0).First().MatchDisplayNum], next);
+                    }
+
+                    // 避免一个组织超过两人的情况
+                    else if (partA.Where(x => x.Num == 0).Count() > 0 && (!partA.Select(x => x.Organization).Contains(next.Organization)))
+                    {
+                        ConvertFromNext(listPerson[partA.Where(x => x.Num == 0).First().MatchDisplayNum], next);
+                    }
+                    else if (partB.Where(x => x.Num == 0).Count() > 0 && (!partB.Select(x => x.Organization).Contains(next.Organization)))
+                    {
+                        ConvertFromNext(listPerson[partB.Where(x => x.Num == 0).First().MatchDisplayNum], next);
+                    }
+                    else if (partC.Where(x => x.Num == 0).Count() > 0 && (!partC.Select(x => x.Organization).Contains(next.Organization)))
+                    {
+                        ConvertFromNext(listPerson[partC.Where(x => x.Num == 0).First().MatchDisplayNum], next);
+                    }
+                    else if (partD.Where(x => x.Num == 0).Count() > 0 && (!partD.Select(x => x.Organization).Contains(next.Organization)))
+                    {
+                        ConvertFromNext(listPerson[partD.Where(x => x.Num == 0).First().MatchDisplayNum], next);
+                    }
+                    else if (partA.Where(x => x.Num == 0).Count() > 0)
+                    {
+                        ConvertFromNext(listPerson[partA.Where(x => x.Num == 0).First().MatchDisplayNum], next);
+                    }
+                    else if (partB.Where(x => x.Num == 0).Count() > 0)
+                    {
+                        ConvertFromNext(listPerson[partB.Where(x => x.Num == 0).First().MatchDisplayNum], next);
+                    }
+                    else if (partC.Where(x => x.Num == 0).Count() > 0)
+                    {
+                        ConvertFromNext(listPerson[partC.Where(x => x.Num == 0).First().MatchDisplayNum], next);
+                    }
+                    else if (partD.Where(x => x.Num == 0).Count() > 0)
+                    {
+                        ConvertFromNext(listPerson[partD.Where(x => x.Num == 0).First().MatchDisplayNum], next);
+                    }
+
+                    normalPersons.Remove(next);
+                }
+            }           
             JustPersonPosition(listPerson);
             return listPerson;
         }
@@ -513,6 +764,25 @@ namespace DSSportCompetitionSys
             var partB = listPerson.Skip((listPerson.Count() / 2)).Take(listPerson.Count() / 2).ToList();
 
             // 检查上半区和下半区是否有相同组织的
+            foreach (var aperson in partA)
+            {
+                // 如果有一个组织超过两人，则找出上半区不在下半区的人替换位置
+                if (aperson.SeedNum == 0 && aperson.Organization != null && partA.Where(x => x.Organization == aperson.Organization).Count() > 1)
+                {
+                    foreach (var bperson in partB.Where(x => x.SeedNum == 0))
+                    {
+                        if (!partA.Select(x => x.Organization).ToList().Contains(bperson.Organization))
+                        {
+                            var tempPerson = new PersonInfoEntity();
+                            ConvertFromNext(tempPerson, aperson);
+                            ConvertFromNext(aperson, bperson);
+                            ConvertFromNext(bperson, tempPerson);
+                            break;
+                        }
+                    }
+                }
+            }
+
             foreach (var bperson in partB)
             {
                 // 如果有一个组织超过两人，则找出上半区不在下半区的人替换位置
@@ -531,6 +801,84 @@ namespace DSSportCompetitionSys
                     }                
                 }            
             }
+
+            // 如果在每1/4区还有相同组织，继续调整
+            var part4A = listPerson.Skip(0).Take(listPerson.Count() / 4).ToList();
+            var part4B = listPerson.Skip((listPerson.Count() / 4)).Take(listPerson.Count() / 4).ToList();
+            var part4C = listPerson.Skip((listPerson.Count() / 4) * 2).Take(listPerson.Count() / 4).ToList();
+            var part4D = listPerson.Skip((listPerson.Count() / 4) * 3).Take(listPerson.Count() / 4).ToList();
+            foreach (var aperson in part4A)
+            {
+                if (aperson.SeedNum == 0 && aperson.Organization != null && part4A.Where(x => x.Organization == aperson.Organization).Count() > 1)
+                {
+                    foreach (var bperson in part4B.Where(x => x.SeedNum == 0))
+                    {
+                        if (!part4A.Select(x => x.Organization).ToList().Contains(bperson.Organization))
+                        {
+                            var tempPerson = new PersonInfoEntity();
+                            ConvertFromNext(tempPerson, aperson);
+                            ConvertFromNext(aperson, bperson);
+                            ConvertFromNext(bperson, tempPerson);
+                            break;
+                        }
+                    }
+                }
+            }
+
+            foreach (var bperson in part4B)
+            {
+                if (bperson.SeedNum == 0 && bperson.Organization != null && part4B.Where(x => x.Organization == bperson.Organization).Count() > 1)
+                {
+                    foreach (var aperson in part4A.Where(x => x.SeedNum == 0))
+                    {
+                        if (!part4B.Select(x => x.Organization).ToList().Contains(aperson.Organization))
+                        {
+                            var tempPerson = new PersonInfoEntity();
+                            ConvertFromNext(tempPerson, bperson);
+                            ConvertFromNext(bperson, aperson);
+                            ConvertFromNext(aperson, tempPerson);
+                            break;
+                        }
+                    }
+                }
+            }
+
+            foreach (var cperson in part4C)
+            {
+                if (cperson.SeedNum == 0 && cperson.Organization != null && part4C.Where(x => x.Organization == cperson.Organization).Count() > 1)
+                {
+                    foreach (var dperson in part4D.Where(x => x.SeedNum == 0))
+                    {
+                        if (!part4C.Select(x => x.Organization).ToList().Contains(dperson.Organization))
+                        {
+                            var tempPerson = new PersonInfoEntity();
+                            ConvertFromNext(tempPerson, cperson);
+                            ConvertFromNext(cperson, dperson);
+                            ConvertFromNext(dperson, tempPerson);
+                            break;
+                        }
+                    }
+                }
+            }
+
+            foreach (var dperson in part4D)
+            {
+                if (dperson.SeedNum == 0 && dperson.Organization != null && part4D.Where(x => x.Organization == dperson.Organization).Count() > 1)
+                {
+                    foreach (var cperson in part4D.Where(x => x.SeedNum == 0))
+                    {
+                        if (!part4C.Select(x => x.Organization).ToList().Contains(cperson.Organization))
+                        {
+                            var tempPerson = new PersonInfoEntity();
+                            ConvertFromNext(tempPerson, dperson);
+                            ConvertFromNext(dperson, cperson);
+                            ConvertFromNext(cperson, tempPerson);
+                            break;
+                        }
+                    }
+                }
+            }
+
         }
 
         private void ConvertFromNext(PersonInfoEntity A, PersonInfoEntity B)

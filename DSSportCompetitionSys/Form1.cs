@@ -119,27 +119,26 @@ namespace DSSportCompetitionSys
             importForm.ShowDialog();
         }
 
-        private void buttonBallot_Click(object sender, EventArgs e)
-        {
-            var data = new DataGridViewRow();
-            try
-            {
-                data = this.dataGridViewX1.SelectedRows[0];
-                if (data.Cells[0].Value == null || string.IsNullOrWhiteSpace(data.Cells[0].Value.ToString()))
-                {
-                    MessageBox.Show("请设置项目名称后重新操作", "友情提示");
-                    return;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("请点击左侧空白单元格，选中整行后重新设置。", "友情提示");
-                return;
-            }
+        //private void buttonBallot_Click(object sender, EventArgs e)
+        //{
+        //    var data = new DataGridViewRow();
+        //    try
+        //    {
+        //        data = this.dataGridViewX1.SelectedRows[0];
+        //        if (data.Cells[0].Value == null || string.IsNullOrWhiteSpace(data.Cells[0].Value.ToString()))
+        //        {
+        //            MessageBox.Show("请设置项目名称后重新操作", "友情提示");
+        //            return;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("请点击左侧空白单元格，选中整行后重新设置。", "友情提示");
+        //        return;
+        //    }
 
-            MatchPersonInfoForm importForm = MatchPersonInfoForm.Instance(data);
-            importForm.ShowDialog();
-        }
+
+        //}
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -258,6 +257,12 @@ namespace DSSportCompetitionSys
         {
             GroupsManage manageForm = new GroupsManage();
             manageForm.ShowDialog();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            WriteStream(ProjectManageInfoPath);
+            this.Close();
         }
     }
 }

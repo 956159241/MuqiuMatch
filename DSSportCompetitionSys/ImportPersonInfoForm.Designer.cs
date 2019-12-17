@@ -49,6 +49,8 @@ namespace DSSportCompetitionSys
             this.labelX12 = new DevComponents.DotNetBar.LabelX();
             this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
             this.labelX10 = new DevComponents.DotNetBar.LabelX();
+            this.buttonBallot = new DevComponents.DotNetBar.ButtonX();
+            this.labelX13 = new DevComponents.DotNetBar.LabelX();
             // 
             // buttonImportPersonInfo
             // 
@@ -147,7 +149,7 @@ namespace DSSportCompetitionSys
             // 
             this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX2.Location = new System.Drawing.Point(657, 247);
+            this.labelX2.Location = new System.Drawing.Point(657, 311);
             this.labelX2.Name = "labelX2";
             this.labelX2.Size = new System.Drawing.Size(266, 23);
             this.labelX2.TabIndex = 8;
@@ -159,7 +161,7 @@ namespace DSSportCompetitionSys
             // 
             // 
             this.labelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX3.Location = new System.Drawing.Point(689, 276);
+            this.labelX3.Location = new System.Drawing.Point(689, 340);
             this.labelX3.Name = "labelX3";
             this.labelX3.Size = new System.Drawing.Size(209, 23);
             this.labelX3.TabIndex = 9;
@@ -172,7 +174,7 @@ namespace DSSportCompetitionSys
             // 
             this.labelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX4.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX4.Location = new System.Drawing.Point(660, 404);
+            this.labelX4.Location = new System.Drawing.Point(660, 468);
             this.labelX4.Name = "labelX4";
             this.labelX4.Size = new System.Drawing.Size(266, 64);
             this.labelX4.TabIndex = 10;
@@ -186,7 +188,7 @@ namespace DSSportCompetitionSys
             // 
             this.labelX5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX5.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX5.Location = new System.Drawing.Point(657, 300);
+            this.labelX5.Location = new System.Drawing.Point(657, 364);
             this.labelX5.Name = "labelX5";
             this.labelX5.Size = new System.Drawing.Size(266, 23);
             this.labelX5.TabIndex = 11;
@@ -198,7 +200,7 @@ namespace DSSportCompetitionSys
             // 
             // 
             this.labelX6.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX6.Location = new System.Drawing.Point(689, 323);
+            this.labelX6.Location = new System.Drawing.Point(689, 387);
             this.labelX6.Name = "labelX6";
             this.labelX6.Size = new System.Drawing.Size(177, 23);
             this.labelX6.TabIndex = 12;
@@ -210,7 +212,7 @@ namespace DSSportCompetitionSys
             // 
             // 
             this.labelX7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX7.Location = new System.Drawing.Point(689, 352);
+            this.labelX7.Location = new System.Drawing.Point(689, 416);
             this.labelX7.Name = "labelX7";
             this.labelX7.Size = new System.Drawing.Size(177, 23);
             this.labelX7.TabIndex = 13;
@@ -222,7 +224,7 @@ namespace DSSportCompetitionSys
             // 
             // 
             this.labelX8.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX8.Location = new System.Drawing.Point(689, 381);
+            this.labelX8.Location = new System.Drawing.Point(689, 445);
             this.labelX8.Name = "labelX8";
             this.labelX8.Size = new System.Drawing.Size(177, 23);
             this.labelX8.TabIndex = 14;
@@ -260,7 +262,7 @@ namespace DSSportCompetitionSys
             this.buttonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonX1.Controls.Add(this.labelX10);
             this.buttonX1.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.buttonX1.Location = new System.Drawing.Point(657, 172);
+            this.buttonX1.Location = new System.Drawing.Point(657, 170);
             this.buttonX1.Name = "buttonX1";
             this.buttonX1.Size = new System.Drawing.Size(269, 61);
             this.buttonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -284,12 +286,43 @@ namespace DSSportCompetitionSys
             this.labelX10.Text = "Set Seeded Player";
             this.labelX10.TextAlignment = System.Drawing.StringAlignment.Center;
             // 
+            // buttonBallot
+            // 
+            this.buttonBallot.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.buttonBallot.BackColor = System.Drawing.Color.Transparent;
+            this.buttonBallot.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonBallot.Controls.Add(this.labelX13);
+            this.buttonBallot.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.buttonBallot.Location = new System.Drawing.Point(657, 235);
+            this.buttonBallot.Name = "buttonBallot";
+            this.buttonBallot.Size = new System.Drawing.Size(269, 70);
+            this.buttonBallot.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.buttonBallot.TabIndex = 18;
+            this.buttonBallot.Text = "生成比赛对阵表";
+            this.buttonBallot.Click += new System.EventHandler(this.buttonBallot_Click);
+            // 
+            // labelX13
+            // 
+            // 
+            // 
+            // 
+            this.labelX13.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX13.Enabled = false;
+            this.labelX13.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelX13.Location = new System.Drawing.Point(19, 43);
+            this.labelX13.Name = "labelX13";
+            this.labelX13.Size = new System.Drawing.Size(236, 23);
+            this.labelX13.TabIndex = 0;
+            this.labelX13.Text = "Generate Match Versus Table";
+            this.labelX13.TextAlignment = System.Drawing.StringAlignment.Center;
+            // 
             // ImportPersonInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(935, 534);
+            this.Controls.Add(this.buttonBallot);
             this.Controls.Add(this.buttonX1);
             this.Controls.Add(this.labelX12);
             this.Controls.Add(this.labelX11);
@@ -318,6 +351,7 @@ namespace DSSportCompetitionSys
             this.buttonImportPersonInfo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).EndInit();
             this.buttonX1.ResumeLayout(false);
+            this.buttonBallot.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -340,6 +374,8 @@ namespace DSSportCompetitionSys
         private DevComponents.DotNetBar.LabelX labelX12;
         private DevComponents.DotNetBar.ButtonX buttonX1;
         private DevComponents.DotNetBar.LabelX labelX10;
+        private DevComponents.DotNetBar.ButtonX buttonBallot;
+        private DevComponents.DotNetBar.LabelX labelX13;
     }
 }
 

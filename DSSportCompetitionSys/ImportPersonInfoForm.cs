@@ -294,5 +294,12 @@ namespace DSSportCompetitionSys
         private void dataGridViewX1_Sorted(object sender, EventArgs e)
         {
         }
+
+        private void buttonBallot_Click(object sender, EventArgs e)
+        {
+            WriteStream();
+            MatchPersonInfoForm importForm = MatchPersonInfoForm.Instance(ParentProjectInfo);
+            importForm.ShowDialog();
+        }
     }
 }
