@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -300,6 +301,24 @@ namespace DSSportCompetitionSys
             WriteStream();
             MatchPersonInfoForm importForm = MatchPersonInfoForm.Instance(ParentProjectInfo);
             importForm.ShowDialog();
+        }
+
+        private void labelX14_MouseHover(object sender, EventArgs e)
+        {
+            this.labelX14.ForeColor = Color.Red;
+        }
+
+        private void labelX14_MouseLeave(object sender, EventArgs e)
+        {
+            this.labelX14.ForeColor = Color.Gray;
+        }
+
+        private void labelX14_Click(object sender, EventArgs e)
+        {
+            var path = System.IO.Directory.GetCurrentDirectory();
+            var filePath = Path.Combine(path, @"Template\ImportTemplate.xlsx");
+            // 打开生成的报表
+            System.Diagnostics.Process.Start(filePath);
         }
     }
 }
