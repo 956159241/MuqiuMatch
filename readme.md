@@ -15,7 +15,7 @@
 ![image](https://github.com/956159241/MuqiuMatch/tree/master/screenshots/index.jpg)
 
 #### 组别管理
-![](./screenshots/group_manage.jpg)
+![](../screenshots/group_manage.jpg)
 
 #### 比赛管理
 ![](./screenshots/match_manage.jpg)
