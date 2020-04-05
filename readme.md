@@ -1,3 +1,4 @@
+![add image](https://github.com/carmen-zhy/job/raw/master/image/*.jpg)
 ## 木球竞赛抽签积分系统
 
 功能模块：
