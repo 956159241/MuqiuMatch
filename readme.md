@@ -11,18 +11,18 @@
 技术：.net framework 4.5, winform, DoNetBar, NPOI, FreeSpire.XLS(免费版，PDF页数有限制)
 
 #### 首页
-![](screenshots/index.jpg)
+![](./screenshots/index.jpg)
 
 #### 组别管理
-![](screenshots/group_manage.jpg)
+![](./screenshots/group_manage.jpg)
 
 #### 比赛管理
-![](screenshots/match_manage.jpg)
+![](./screenshots/match_manage.jpg)
 
 #### 生成报表
 ###### PDF
-![](screenshots/report_pdf.jpg)
+![](./screenshots/report_pdf.jpg)
 
 ###### Excel
-![](screenshots/report_excel.jpg)
+![](./screenshots/report_excel.jpg)
 
