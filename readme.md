@@ -1,4 +1,3 @@
-![add image](https://github.com/carmen-zhy/job/raw/master/image/*.jpg)
 ## 木球竞赛抽签积分系统
 
 功能模块：
@@ -12,7 +11,7 @@
 技术：.net framework 4.5, winform, DoNetBar, NPOI, FreeSpire.XLS(免费版，PDF页数有限制)
 
 #### 首页
-![image](https://gitee.com/956159241/MuqiuMatch/tree/master/screenshots/index.jpg)
+![image](https://raw.githubusercontent.com/956159241/MuqiuMatch/tree/master/screenshots/index.jpg)
 
 #### 组别管理
 ![](../screenshots/group_manage.jpg)
