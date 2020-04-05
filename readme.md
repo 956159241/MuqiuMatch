@@ -17,7 +17,7 @@
 ![](../screenshots/group_manage.jpg)
 
 #### 比赛管理
-![](./screenshots/match_manage.jpg)
+![](/screenshots/group_manage?raw=true)
 
 #### 生成报表
 ###### PDF
