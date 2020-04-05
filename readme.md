@@ -11,13 +11,13 @@
 技术：.net framework 4.5, winform, DoNetBar, NPOI, FreeSpire.XLS(免费版，PDF页数有限制)
 
 #### 首页
-![image](https://raw.githubusercontent.com/956159241/MuqiuMatch/tree/master/screenshots/index.jpg)
+![image](./screenshots/index.jpg)
 
 #### 组别管理
-![](../screenshots/group_manage.jpg)
+![](./screenshots/group_manage.jpg)
 
 #### 比赛管理
-![](/screenshots/group_manage?raw=true)
+![](./screenshots/match_manage.jpg)
 
 #### 生成报表
 ###### PDF
