@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace DSSportCompetitionSys
 {
-    public enum Sex { 男, 女 }
+    public enum Sex { 男, 女, 男女, 男男, 女女}
 
     public partial class ImportPersonInfoForm : Form
     {
@@ -72,6 +72,9 @@ namespace DSSportCompetitionSys
         {
             this.comboSex.Items.Add("男");
             this.comboSex.Items.Add("女");
+            this.comboSex.Items.Add("男女");
+            this.comboSex.Items.Add("男男");
+            this.comboSex.Items.Add("女女");
 
             this.comboSex.SelectedIndex = 0;
         }
@@ -98,8 +101,15 @@ namespace DSSportCompetitionSys
             {
                 this.comboGroup.Items.Add(group);
             }
+            try
+            {
+                this.comboGroup.SelectedIndex = 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("请先设置组别后重启程序");
+            }
 
-            this.comboGroup.SelectedIndex = 0;
         }
 
         private static void SetFormTitle(DataGridViewRow parentProjectInfo)
